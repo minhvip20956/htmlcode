@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<!--
+// Chuyen huong danh cho dien thoai Android, IOS va May Tinh
+// Version: 1.0
+// Viet boi Vuong Cong Minh: https://www.facebook.com/vuongcongminh
+-->
+<!--// Buoc 1: Lay thong tin thiet bi => Store -->
+<script>
+function namestore() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    <!--// Neu day la thiet bi Google Android -->
+    if (/android/i.test(userAgent)) {
+        return "GoogleCHPlay";
+    }
+    
+    <!--// Neu la thiet bi Apple IOS -->
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "IOSAppStore";
+    }
+
+    <!--// Cac truong hop khac -->
+    return "unknown";
+  }
+</script>
+
+<!--// Buoc 2: Rewrite toi URL cua Store theo thong tin da lay -->
+<script>
+function storerewrite(){
+    let store = namestore();
+    if (store == "GoogleCHPlay") {
+        window.location.href = "https://play.google.com/store/apps/details?id=vn.kasco.miutea"; 
+    } else if (store == "IOSAppStore") {
+        window.location.href = "https://apps.apple.com/vn/app/miutea/id1500380292";
+    }  else {
+        window.location.href = "https://miutea.vn";
+    }
+}
+</script>
+</head>
+
+<!--// Buoc 3: Goi script trong head khi khach truy cap -->
+<body onload="storerewrite()">
+</body>
+</html>
